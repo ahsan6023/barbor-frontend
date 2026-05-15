@@ -1,0 +1,838 @@
+/* ===========================================================
+   PREMIUM STYLESHEET — MERN Project
+   All class names & layout logic preserved.
+   Visual layer elevated to production-grade modern aesthetic.
+   Font: Playfair Display (headings) + Plus Jakarta Sans (body)
+   ============================================================ */
+
+   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Plus Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+   /* ── Design Tokens ── */
+   :root {
+     --bg: #f5f3ef;
+     --surface: #ffffff;
+     --surface-2: #faf9f7;
+     --heading: #0f0d0a;
+     --text: #3d3830;
+     --muted: #8a8278;
+     --line: rgba(0, 0, 0, 0.08);
+
+     /* ── Buttons: same amber hue, pushed ~20% darker ── */
+     --primary: #a86b22;
+     --primary-dark: #7d4d10;
+     --primary-light: rgba(168, 107, 34, 0.12);
+
+     --gold: #c49535;
+     --gold-light: rgba(196, 149, 53, 0.15);
+     --footer: #0f0d0a;
+     --radius-lg: 24px;
+     --radius-md: 18px;
+     --radius-sm: 12px;
+     --shadow-1: 0 4px 24px rgba(15, 13, 10, 0.07), 0 1px 4px rgba(15, 13, 10, 0.04);
+     --shadow-2: 0 16px 48px rgba(15, 13, 10, 0.13), 0 4px 12px rgba(15, 13, 10, 0.06);
+     --shadow-gold: 0 8px 32px rgba(168, 107, 34, 0.30);
+     --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+     --font-display: 'Playfair Display', Georgia, serif;
+     --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+   /* ── Reset & Base ── */
+   * {
+     box-sizing: border-box;
+   }
+
+   body {
+     margin: 0;
+     font-family: var(--font);
+     font-size: 16px;
+     line-height: 1.7;
+     background:
+       radial-gradient(ellipse at 8% 0%, rgba(168, 107, 34, 0.10) 0%, transparent 40%),
+       radial-gradient(ellipse at 92% 20%, rgba(196, 149, 53, 0.08) 0%, transparent 38%),
+       radial-gradient(ellipse at 50% 100%, rgba(125, 77, 16, 0.06) 0%, transparent 45%),
+       linear-gradient(170deg, #f7f5f0 0%, #f2efe9 50%, #ece9e2 100%);
+     color: var(--text);
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+   }
+
+   a {
+     color: inherit;
+     text-decoration: none;
+   }
+
+   #root {
+     min-height: 100vh;
+   }
+
+   /* ── Layout ── */
+   .container {
+     width: min(100%, 1200px);
+     margin: 0 auto;
+     padding-inline: 36px;
+   }
+
+   /* ── Site Header ── */
+   .site-header {
+     padding: 88px 0 48px;
+     text-align: center;
+     position: relative;
+     background:
+       radial-gradient(ellipse at 15% 50%, rgba(168, 107, 34, 0.13) 0%, transparent 50%),
+       radial-gradient(ellipse at 85% 30%, rgba(196, 149, 53, 0.10) 0%, transparent 45%),
+       #0f0d0a;
+     overflow: hidden;
+   }
+
+   /* subtle grain texture overlay */
+   .site-header::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+     pointer-events: none;
+     opacity: 0.6;
+   }
+
+   /* gold divider line at bottom of header */
+   .site-header::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     height: 1px;
+     background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--primary) 60%, transparent 100%);
+   }
+
+   .kicker {
+     text-transform: uppercase;
+     letter-spacing: 0.22em;
+     font-size: 0.72rem;
+     font-weight: 700;
+     color: var(--gold);
+     margin: 0;
+     font-family: var(--font);
+     position: relative;
+     z-index: 1;
+   }
+
+   h1, h2, h3 {
+     color: var(--heading);
+     margin: 0;
+   }
+
+   .site-header h1 {
+     font-family: var(--font-display);
+     font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+     font-weight: 700;
+     margin: 14px 0 14px;
+     letter-spacing: -0.02em;
+     line-height: 1.1;
+     background: linear-gradient(135deg, #ffffff 20%, var(--gold) 100%);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     position: relative;
+     z-index: 1;
+   }
+
+   /* ── Header: ALL text white by default, weight hierarchy applied ── */
+   .site-header *:not(h1) {
+     color: #ffffff;
+     position: relative;
+     z-index: 1;
+   }
+
+   /* Primary body text in header — slightly softened for contrast hierarchy */
+   .site-header p,
+   .site-header span,
+   .site-header li,
+   .site-header address {
+     color: rgba(255, 255, 255, 0.88);
+     font-weight: 400;
+   }
+
+   /* Bold/important labels inside header — fully white */
+   .site-header strong,
+   .site-header b,
+   .site-header h2,
+   .site-header h3,
+   .site-header .header-sub,
+   .site-header .header-label {
+     color: #ffffff;
+     font-weight: 700;
+   }
+
+   /* kicker stays gold — it's an accent, not body text */
+   .kicker {
+     color: var(--gold) !important;
+   }
+
+   .header-badge {
+     display: inline-flex;
+     margin-top: 20px;
+     padding: 10px 22px;
+     border-radius: 999px;
+     border: 1px solid rgba(196, 149, 53, 0.35);
+     background: rgba(168, 107, 34, 0.15);
+     color: #ffffff;
+     font-weight: 700;
+     font-size: 0.88rem;
+     letter-spacing: 0.01em;
+     box-shadow: 0 2px 20px rgba(168, 107, 34, 0.22), inset 0 1px 0 rgba(255,255,255,0.08);
+     position: relative;
+     z-index: 1;
+   }
+
+   /* ── Navbar ── */
+   .navbar {
+     position: sticky;
+     top: 0;
+     z-index: 20;
+     border-top: 1px solid rgba(168, 107, 34, 0.12);
+     border-bottom: 1px solid rgba(168, 107, 34, 0.12);
+     background: rgba(245, 243, 239, 0.88);
+     backdrop-filter: blur(16px) saturate(1.4);
+     -webkit-backdrop-filter: blur(16px) saturate(1.4);
+   }
+
+   .nav-inner {
+     min-height: 78px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+   }
+
+   .nav-link {
+     border: 1px solid rgba(15, 13, 10, 0.10);
+     border-radius: 999px;
+     padding: 10px 24px;
+     font-weight: 600;
+     font-size: 0.88rem;
+     letter-spacing: 0.01em;
+     background: rgba(255, 255, 255, 0.7);
+     backdrop-filter: blur(8px);
+     box-shadow: 0 2px 8px rgba(15, 13, 10, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+   }
+
+   .nav-link:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 8px 24px rgba(168, 107, 34, 0.18), 0 2px 8px rgba(15, 13, 10, 0.06);
+     border-color: rgba(168, 107, 34, 0.35);
+     background: rgba(255, 255, 255, 0.95);
+   }
+
+   .nav-link.active {
+     background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+     color: #fff;
+     border-color: transparent;
+     box-shadow: var(--shadow-gold);
+   }
+
+   /* ── Page Sections ── */
+   .page-section {
+     padding: 64px 0;
+     display: grid;
+     gap: 56px;
+   }
+
+   /* ── Owner Panel & About Layout ── */
+   .owner-panel,
+   .about-layout {
+     display: grid;
+     grid-template-columns: 1.1fr 380px;
+     gap: 40px;
+     background: linear-gradient(150deg, #ffffff 0%, #fefcf9 55%, #faf7f2 100%);
+     border: 1px solid rgba(168, 107, 34, 0.14);
+     border-radius: var(--radius-lg);
+     box-shadow: var(--shadow-1);
+     padding: 36px;
+     position: relative;
+     overflow: hidden;
+     transition: transform var(--transition), box-shadow var(--transition);
+   }
+
+   .owner-panel::before,
+   .about-layout::before {
+     content: '';
+     position: absolute;
+     top: 0; left: 0; right: 0;
+     height: 3px;
+     background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary-dark));
+     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+   }
+
+   .owner-panel:hover,
+   .about-layout:hover {
+     transform: translateY(-6px);
+     box-shadow: var(--shadow-2);
+   }
+
+   .owner-role {
+     margin: 8px 0 14px;
+     color: var(--primary);
+     font-weight: 500;
+     font-size: 0.92rem;
+     letter-spacing: 0.04em;
+     text-transform: uppercase;
+   }
+
+   .owner-image,
+   .about-image {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: var(--radius-md);
+     min-height: 340px;
+     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+     filter: saturate(0.92) contrast(1.02);
+     box-shadow: 0 8px 32px rgba(15, 13, 10, 0.12);
+   }
+
+   .owner-image:hover,
+   .about-image:hover {
+     transform: scale(1.04);
+     filter: saturate(1.08) contrast(1.02);
+   }
+
+   .owner-cta-row {
+     margin-top: 24px;
+   }
+
+   /* ── Section Headings ── */
+   .section-heading h2 {
+     font-family: var(--font-display);
+     font-size: clamp(1.6rem, 2.5vw, 2.3rem);
+     font-weight: 700;
+     margin-bottom: 10px;
+     letter-spacing: -0.025em;
+     color: var(--heading);
+   }
+
+   /* ── Treatments Grid ── */
+   .treatments-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+     gap: 24px;
+   }
+
+   /* ── Cards (shared surface) ── */
+   .service-card,
+   .booking-card,
+   .booking-form,
+   .deal-accordion,
+   .total-box {
+     background: var(--surface);
+     border: 1px solid var(--line);
+     border-radius: var(--radius-md);
+     box-shadow: var(--shadow-1);
+   }
+
+   /* ── Service Card ── */
+   .service-card {
+     overflow: hidden;
+     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+     position: relative;
+   }
+
+   .service-card::after {
+     content: '';
+     position: absolute;
+     bottom: 0; left: 0; right: 0;
+     height: 2px;
+     background: linear-gradient(90deg, var(--primary), var(--gold));
+     transform: scaleX(0);
+     transform-origin: left;
+     transition: transform var(--transition);
+   }
+
+   .service-card:hover {
+     transform: translateY(-10px);
+     box-shadow: var(--shadow-2);
+     border-color: rgba(168, 107, 34, 0.2);
+   }
+
+   .service-card:hover::after {
+     transform: scaleX(1);
+   }
+
+   /* ── Treatment Image Wrap ──
+      To change or add treatment images locally:
+      Option A (recommended): set a data-img attribute on .image-wrap in your JSX/HTML
+        e.g. <div class="image-wrap" data-img="/images/treatments/facial.jpg">
+        then use CSS attr() or a JS one-liner: 
+          document.querySelectorAll('.image-wrap[data-img]')
+            .forEach(el => el.style.backgroundImage = `url(${el.dataset.img})`);
+      Option B: give each card a unique class like .treatment-facial
+        then override background-image per card.
+      Option C: just use <img src="./images/treatments/your-file.jpg"> inside .image-wrap
+        — the styles below handle sizing automatically.
+   ── */
+   .image-wrap {
+     overflow: hidden;
+     height: 220px;
+     background: var(--surface-2);
+     position: relative;
+     /* Fallback background-size/position for when bg-image is used */
+     background-size: cover;
+     background-position: center;
+   }
+
+   .image-wrap::after {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(180deg, transparent 60%, rgba(15, 13, 10, 0.25) 100%);
+     opacity: 0;
+     transition: opacity var(--transition);
+     pointer-events: none;
+   }
+
+   .service-card:hover .image-wrap::after {
+     opacity: 1;
+   }
+
+   /* img tag inside image-wrap — swap src any time for a new local image */
+   .image-wrap img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.55s ease;
+     display: block; /* prevents baseline gap */
+   }
+
+   .service-card:hover .image-wrap img {
+     transform: scale(1.1);
+     filter: brightness(1.05) saturate(1.05);
+   }
+
+   .service-content {
+     padding: 22px 22px 18px;
+   }
+
+   /* ── Treatment description text → black ── */
+   .service-content p {
+     min-height: 70px;
+     font-size: 0.9rem;
+     line-height: 1.65;
+     color: #111111;
+     font-weight: 400;
+   }
+
+   .service-footer {
+     margin-top: 16px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 8px;
+   }
+
+   /* ── Treatment price → black ── */
+   .price-tag {
+     color: #111111;
+     font-weight: 800;
+     font-size: 1.15rem;
+     letter-spacing: -0.01em;
+     font-family: var(--font-display);
+   }
+
+   /* ── Buttons ── */
+   .button,
+   .mini-btn {
+     border: none;
+     border-radius: 999px;
+     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+     color: #fff;
+     cursor: pointer;
+     font-family: var(--font);
+     font-weight: 600;
+     letter-spacing: 0.01em;
+     position: relative;
+     overflow: hidden;
+     transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+   }
+
+   .button::before,
+   .mini-btn::before {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: linear-gradient(135deg, rgba(255,255,255,0.13) 0%, transparent 60%);
+     pointer-events: none;
+   }
+
+   .button {
+     padding: 12px 24px;
+     font-size: 0.92rem;
+   }
+
+   .button.secondary {
+     background: linear-gradient(135deg, #1a1714, #0f0d0a);
+   }
+
+   .mini-btn {
+     padding: 7px 16px;
+     font-size: 0.82rem;
+   }
+
+   .button:hover,
+   .mini-btn:hover {
+     transform: translateY(-3px) scale(1.015);
+     box-shadow: var(--shadow-gold);
+     filter: saturate(1.08);
+   }
+
+   .button:disabled {
+     background: #c5bdb5;
+     cursor: not-allowed;
+     box-shadow: none;
+     transform: none;
+   }
+
+   /* ── Deals / Accordion ── */
+   .deals-list {
+     display: grid;
+     gap: 16px;
+   }
+
+   .deal-accordion {
+     padding: 20px 24px;
+     transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+     position: relative;
+     overflow: hidden;
+   }
+
+   .deal-accordion::before {
+     content: '';
+     position: absolute;
+     left: 0; top: 0; bottom: 0;
+     width: 3px;
+     background: linear-gradient(180deg, var(--primary), var(--gold));
+     border-radius: 0 2px 2px 0;
+     transform: scaleY(0);
+     transition: transform var(--transition);
+   }
+
+   .deal-accordion:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 12px 32px rgba(15, 13, 10, 0.10);
+     border-color: rgba(168, 107, 34, 0.2);
+   }
+
+   .deal-accordion:hover::before {
+     transform: scaleY(1);
+   }
+
+   .deal-accordion summary {
+     cursor: pointer;
+     display: flex;
+     justify-content: space-between;
+     font-weight: 700;
+     color: var(--heading);
+     list-style: none;
+     font-size: 0.96rem;
+     letter-spacing: -0.01em;
+     font-family: var(--font-display);
+   }
+
+   .deal-accordion summary::-webkit-details-marker {
+     display: none;
+   }
+
+   /* ── Deal Images ──
+      Add an image for each deal by placing an <img> or a div.deal-image inside
+      each .deal-accordion. To use local images:
+        <img class="deal-image" src="./images/deals/deal-name.jpg" alt="Deal name" />
+      To change: just replace the src path. Each deal image sits below the summary.
+   ── */
+   .deal-image {
+     width: 100%;
+     height: 180px;
+     object-fit: cover;
+     border-radius: var(--radius-sm);
+     margin: 14px 0 10px;
+     display: block;
+     background: var(--surface-2);
+     background-size: cover;
+     background-position: center;
+     transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+   .deal-accordion[open] .deal-image {
+     transform: scale(1.01);
+   }
+
+   /* ── Stars ── */
+   .stars {
+     color: var(--gold);
+     letter-spacing: 3px;
+     filter: drop-shadow(0 1px 3px rgba(196, 149, 53, 0.4));
+   }
+
+   /* ── Booking Layout ── */
+   .booking-layout {
+     display: grid;
+     gap: 24px;
+     grid-template-columns: repeat(2, minmax(0, 1fr));
+   }
+
+   .booking-card,
+   .booking-form {
+     padding: 28px;
+   }
+
+   .booking-list {
+     list-style: none;
+     margin: 14px 0 0;
+     padding: 0;
+     display: grid;
+     gap: 10px;
+   }
+
+   .booking-list li {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     gap: 12px;
+     padding: 10px 0;
+     border-bottom: 1px solid var(--line);
+     font-size: 0.92rem;
+   }
+
+   .booking-list li:last-child {
+     border-bottom: none;
+   }
+
+   /* ── Total Box ── */
+   .total-box {
+     padding: 22px 26px;
+     background: linear-gradient(140deg, #fffdf9, #fdf8ef);
+     color: var(--heading);
+     font-weight: 800;
+     border-left: 4px solid var(--primary);
+     font-family: var(--font-display);
+     letter-spacing: -0.01em;
+     border-radius: var(--radius-sm);
+   }
+
+   /* ── Booking Form ── */
+   .booking-form {
+     display: grid;
+     gap: 16px;
+   }
+
+   .booking-form label {
+     display: grid;
+     gap: 7px;
+     color: var(--heading);
+     font-weight: 600;
+     font-size: 0.9rem;
+     letter-spacing: 0.01em;
+   }
+
+   .booking-form input {
+     border: 1.5px solid rgba(15, 13, 10, 0.10);
+     border-radius: var(--radius-sm);
+     padding: 13px 16px;
+     font-size: 0.96rem;
+     font-family: var(--font);
+     background: rgba(255, 255, 255, 0.8);
+     transition: border-color 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+     color: var(--heading);
+   }
+
+   .booking-form input:focus {
+     outline: none;
+     border-color: var(--primary);
+     box-shadow: 0 0 0 4px rgba(168, 107, 34, 0.14);
+     background: #ffffff;
+   }
+
+   .booking-form input::placeholder {
+     color: var(--muted);
+     font-weight: 400;
+   }
+
+   /* ── Form Messages ── */
+   .form-message {
+     margin: 0;
+     color: #166534;
+     font-weight: 600;
+     font-size: 0.9rem;
+     padding: 10px 14px;
+     border-radius: var(--radius-sm);
+     background: rgba(22, 101, 52, 0.07);
+     border: 1px solid rgba(22, 101, 52, 0.15);
+   }
+
+   .form-message.error {
+     color: #991b1b;
+     background: rgba(153, 27, 27, 0.07);
+     border-color: rgba(153, 27, 27, 0.15);
+   }
+
+   .note {
+     font-style: italic;
+     color: var(--muted);
+     font-size: 0.88rem;
+   }
+
+   /* ── Footer ── */
+   .site-footer {
+     background: var(--footer);
+     color: #ffffff;
+     margin-top: 48px;
+     padding: 56px 0;
+     position: relative;
+     overflow: hidden;
+   }
+
+   /* ALL footer text → white by default */
+   .site-footer *,
+   .site-footer p,
+   .site-footer span,
+   .site-footer li,
+   .site-footer address,
+   .site-footer small,
+   .site-footer label {
+     color: #ffffff;
+     font-style: normal;
+   }
+
+   .site-footer::before {
+     content: '';
+     position: absolute;
+     top: 0; left: 0; right: 0;
+     height: 2px;
+     background: linear-gradient(90deg, transparent 0%, var(--primary) 30%, var(--gold) 60%, transparent 100%);
+   }
+
+   .footer-grid {
+     display: grid;
+     gap: 32px;
+     grid-template-columns: repeat(3, minmax(0, 1fr));
+   }
+
+   /* ── Footer headings: fully white + bold — most prominent ── */
+   .site-footer h3,
+   .site-footer h4,
+   .site-footer strong,
+   .site-footer b {
+     font-family: var(--font-display);
+     color: #ffffff;
+     font-size: 1.05rem;
+     font-weight: 700;
+     letter-spacing: -0.01em;
+     margin-bottom: 16px;
+   }
+
+   /* ── Footer body / secondary text: slightly softer so headings stand out ── */
+   .site-footer p,
+   .site-footer address,
+   .site-footer small {
+     color: rgba(255, 255, 255, 0.80);
+     font-size: 0.9rem;
+     line-height: 1.7;
+   }
+
+   /* ── Footer links: white, hover gold ── */
+   .site-footer a {
+     display: block;
+     margin-bottom: 8px;
+     font-size: 0.9rem;
+     color: rgba(255, 255, 255, 0.85);
+     transition: color var(--transition);
+   }
+
+   .site-footer a:hover {
+     color: var(--gold);
+   }
+
+   /* ── Footer quick links section ── */
+   .footer-quick-links {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+   }
+
+   .footer-quick-links li {
+     margin-bottom: 6px;
+   }
+
+   .footer-quick-links a {
+     display: inline-flex;
+     align-items: center;
+     gap: 7px;
+     color: #c8c0b8;
+     font-size: 0.9rem;
+     font-weight: 500;
+     margin-bottom: 0;
+     transition: color var(--transition), gap var(--transition);
+   }
+
+   .footer-quick-links a::before {
+     content: '›';
+     color: var(--gold);
+     font-size: 1.1rem;
+     line-height: 1;
+   }
+
+   .footer-quick-links a:hover {
+     color: #ffffff;
+     gap: 10px;
+   }
+
+   /* ── Footer important labels: bold white ── */
+   .footer-label,
+   .site-footer strong {
+     color: #ffffff;
+     font-weight: 700;
+   }
+
+   .social-link {
+     display: inline-flex;
+     align-items: center;
+     gap: 8px;
+     transition: color var(--transition), transform var(--transition);
+   }
+
+   .social-link:hover {
+     color: var(--gold);
+     transform: translateX(5px);
+   }
+
+   /* ── Responsive ── */
+   @media (max-width: 900px) {
+     .container {
+       padding-inline: 20px;
+     }
+
+     .owner-panel,
+     .about-layout,
+     .booking-layout,
+     .footer-grid {
+       grid-template-columns: 1fr;
+     }
+
+     .owner-image,
+     .about-image {
+       min-height: 260px;
+     }
+
+     .nav-inner {
+       flex-wrap: wrap;
+       padding-block: 12px;
+       justify-content: center;
+     }
+
+     .site-header h1 {
+       letter-spacing: -0.015em;
+     }
+
+     .footer-grid {
+       grid-template-columns: 1fr;
+     }
+   }
