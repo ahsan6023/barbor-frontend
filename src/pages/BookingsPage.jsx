@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import axios from 'axios'
 import { useBooking } from '../context/BookingContext'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const API_URL = 'https://barbor-backend.onrender.com'
 
 export default function BookingsPage() {
   const {
