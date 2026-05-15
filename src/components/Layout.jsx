@@ -5,7 +5,7 @@ import { salonInfo } from '../data/treatments'
 const navItems = [
   { to: '/', label: 'Home 🏠' },
   { to: '/bookings', label: 'Bookings 📅' },
-  { to: '/about', label: 'About ✨' },
+  { to: '/about', label: 'About ℹ️' },
  
 ]
 
