@@ -6,7 +6,7 @@ const navItems = [
   { to: '/', label: 'Home 🏠' },
   { to: '/bookings', label: 'Bookings 📅' },
   { to: '/about', label: 'About ✨' },
-  { to: '/admin', label: 'Admin 📊' },
+ 
 ]
 
 export default function Layout({ children }) {
