@@ -16,10 +16,7 @@ export default function AboutPage() {
             Our barbers are trained in modern techniques, classic finishing, and skin-safe product use.
             Every appointment is planned around your preferences, face structure, and lifestyle.
           </p>
-          <p className="note">
-            The photo on this page is a placeholder and can be replaced anytime with your real salon or
-            owner image.
-          </p>
+          
         </div>
         <img src={salonInfo.aboutImage} alt="Inside salon workspace" className="about-image" />
       </div>
